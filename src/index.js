@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { store } from './app/store';
@@ -11,7 +11,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 store.dispatch(extendedApiSlice.endpoints.getPosts.initiate());
 store.dispatch(usersApiSlice.endpoints.getUsers.initiate());
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
@@ -20,6 +23,5 @@ ReactDOM.render(
         </Routes>
       </Router>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
